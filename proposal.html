@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Para mi amor ❤️</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: #ffebee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            text-align: center;
+            perspective: 1000px;
+            position: relative;
+        }
+        .card {
+            width: 300px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 1s;
+            cursor: pointer;
+            margin-bottom: 50px;
+        }
+        .card.opened {
+            transform: rotateX(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: white;
+            border: 3px solid #ff4b4b;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backface-visibility: hidden;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .card-back {
+            transform: rotateX(180deg);
+        }
+        .card-text {
+            font-size: 28px;
+            color: #ff4b4b;
+            text-align: center;
+        }
+        .buttons {
+            margin: 20px;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 18px;
+            margin: 10px;
+            border: 3px solid #ff4b4b;
+            border-radius: 25px;
+            cursor: pointer;
+            background: white;
+            color: #ff4b4b;
+            transition: all 0.3s;
+        }
+        .yes-btn:hover {
+            background: #ff4b4b;
+            color: white;
+        }
+        .no-btn:hover {
+            animation: moveAway 0.3s infinite;
+        }
+        .final-card {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border: 3px solid #ff4b4b;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+        .final-message {
+            font-size: 28px;
+            color: #ff4b4b;
+            margin-bottom: 20px;
+            white-space: normal;
+            width: 100%;
+            line-height: 1.5;
+        }
+        .final-card {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border: 3px solid #ff4b4b;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 400px;
+        }
+
+        .final-message {
+            font-size: 28px;
+            color: #ff4b4b;
+            margin-bottom: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        .cat-gif {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+        }
+        @keyframes moveAway {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card" onclick="openCard()">
+            <div class="card-front">
+                <div class="card-text">Toca para abrir ✉️</div>
+            </div>
+            <div class="card-back">
+                <div class="card-text">
+                    ¿Te casarías conmigo? 💍
+                </div>
+            </div>
+        </div>
+        <div class="buttons" id="buttons">
+            <button class="button yes-btn" onclick="showFinalCard()">¡Sí, acepto!</button>
+            <button class="button no-btn" onmouseover="moveButton(this)">No</button>
+        </div>
+        <div class="final-card" id="finalCard">
+            <div class="final-message">
+                ¡Sabía que me amabas! 😊
+            </div>
+            <div class="final-message">
+                Eres mi todo ❤️
+            </div>
+            <img class="cat-gif" src="image/gato-besando-a-la-camara.gif" alt="Cute Cat Kiss">
+        </div>
+    </div>
+
+    <script>
+        function moveButton(btn) {
+            btn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+        }
+
+        function openCard() {
+            document.querySelector('.card').classList.add('opened');
+            setTimeout(() => {
+                document.getElementById('buttons').style.opacity = '1';
+            }, 1000);
+        }
+
+        function showFinalCard() {
+            document.querySelector('.card').style.display = 'none';
+            document.getElementById('buttons').style.display = 'none';
+            document.getElementById('finalCard').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
